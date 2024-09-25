@@ -1,3 +1,5 @@
+
+
 # Project Name
 
 ## Overview
@@ -40,13 +42,12 @@ To get a copy of this repository up and running on your local machine, follow th
     ```bash
     npm install
 
-## Running The App
-
+4. **Running The App**: 
     ```bash
-    npm run start
+    npm run
 
 
-Updating the Prisma Schema
+## Updating the Prisma Schema
 
 To update the Prisma schema, follow these steps:
 
@@ -56,26 +57,27 @@ Update the schema.prisma file located in the prisma directory to reflect your ch
 
 Create a new migration:
 
-Use the following command to create a migration based on your changes:
+1. **Use the following command to create a migration based on your changes**:
 
-```bash
-npx prisma migrate dev --name <migration-name>
+    ```bash
+    npx prisma migrate dev --name <migration-name>
+
 Replace <migration-name> with a descriptive name for your migration, such as add-username-to-user.
 
-Generate the Prisma Client:
 
 After creating the migration, run the following command to regenerate the Prisma Client:
+2. **Generate the Prisma Client**:
 
-```bash
-npx prisma generate
+    ```bash
+    npx prisma generate
+
+
 Deploy your migrations (optional):
 
-If you're ready to deploy your migrations, run:
+3. **If you're ready to deploy your migrations, run**:
 
-```bash
-npx prisma migrate deploy
-
-
+    ```bash
+    npx prisma migrate deploy
 
 
 
