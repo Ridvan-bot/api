@@ -1,5 +1,5 @@
 
-import { Request, Response } from 'express';
+import e, { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
@@ -80,7 +80,8 @@ export const getAllUserProfiles = async (req: Request, res: Response) => {
     const users = await prisma.user.findMany({
       select: {
         id: true,
-        name: true, // Change to name if that’s the correct field
+        name: true,
+        email: true, // Change to name if that’s the correct field
         // Exclude the password field by not including it in the select statement
       },
     });

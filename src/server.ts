@@ -5,6 +5,14 @@ import routes from './routes/index'; // Central routes file
 
 // Load environment variables
 dotenv.config();
+
+if (
+    !process.env.JWT_SECRET ||
+    !process.env.DATABASE_URL ||
+    !process.env.PORT
+)
+    throw new Error('Required environment variables is missing');
+
 // Import logger middleware
 import logger from './lib/middleware/logger';
 
