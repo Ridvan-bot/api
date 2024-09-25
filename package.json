@@ -7,7 +7,10 @@
     "build": "tsc",
     "start": "tsc && node dist/server.js",
     "test": "ts-node src/lib/test/test.ts",
-    "dev": "tsc && nodemon dist/server.js"
+    "dev": "tsc && nodemon dist/server.js",
+    "prisma:migrate": "prisma migrate dev --name",
+    "prisma:generate": "prisma generate",
+    "prisma:deploy": "prisma migrate deploy"
   },
   "repository": {
     "type": "git",
