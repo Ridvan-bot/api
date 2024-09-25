@@ -25,3 +25,11 @@ logs
 # Miscellaneous
 *.tgz
 *.lock
+
+# Ignore Prisma Client and migration files
+/prisma/migrations/*
+!prisma/migrations/**/*.sql  # Include SQL files for migrations
+/prisma/dev.db                # Ignore SQLite database if used
+/prisma/.env                  # Ignore environment variables file
+/prisma/schema.prisma         # Generally, keep this file under version control
+

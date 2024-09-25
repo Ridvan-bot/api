@@ -7,16 +7,16 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export const register = async (req: Request, res: Response) => {
-  const { username, password, email } = req.body;
+  const { name, username, email, password,  } = req.body;
 
   try {
     // Validate input
-    if (!username || !password || !email) {
-      return res.status(400).json({ message: 'Invalid input: username, password, and email are required' });
+    if (!name || !username || !password || !email) {
+      return res.status(400).json({ message: 'Invalid input: name, username, password, and email are required' });
     }
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({
-      where: { email: email },
+      where: { username: username },
     });
 
     if (existingUser) {
@@ -29,7 +29,8 @@ export const register = async (req: Request, res: Response) => {
     // Create a new user in the database
     const newUser = await prisma.user.create({
       data: {
-        name: username, // Adjust as per your User model
+        name: name,
+        username: username, // Adjust as per your User model
         email: email, // Assuming email is used as username
         password: hashedPassword,
       },
@@ -48,7 +49,7 @@ export const login = async (req: Request, res: Response) => {
   try {
     // Find user by username
     const user = await prisma.user.findUnique({
-      where: { email: username }, // Assuming username is the email
+      where: { username: username }, // Assuming username is the email
     });
 
     if (!user) {
@@ -81,6 +82,7 @@ export const getAllUserProfiles = async (req: Request, res: Response) => {
       select: {
         id: true,
         name: true,
+        username: true,
         email: true, // Change to name if that’s the correct field
         // Exclude the password field by not including it in the select statement
       },
@@ -103,10 +105,12 @@ export const getUserByUsername = async (req: Request, res: Response) => {
   try {
     // Find the user with the given username
     const user = await prisma.user.findUnique({
-      where: { email: username }, // Assuming email is used as the username
+      where: { username: username }, // Assuming email is used as the username
       select: {
         id: true,
         name: true, // Change to name if that’s the correct field
+        username: true,
+        email: true,
       },
     });
 
@@ -123,12 +127,12 @@ export const getUserByUsername = async (req: Request, res: Response) => {
   }
 };
 export const deleteUser = async (req: Request, res: Response) => {
-  const { id } = req.params; // Get the user ID from the URL parameters
+  const { username } = req.params; // Get the user ID from the URL parameters
 
   try {
     // Find and delete the user by ID
     const deletedUser = await prisma.user.delete({
-      where: { id: Number(id) }, // Ensure the ID is converted to a number
+      where: { username: username }, // Ensure the ID is converted to a number
     });
 
     res.json({

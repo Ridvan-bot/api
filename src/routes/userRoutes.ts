@@ -9,6 +9,6 @@ const router = Router();
 router.post('/register', registerLimiter, register);
 router.get('/profiles/', authenticateToken, getAllUserProfiles);
 router.get('/profile/:username', authenticateToken, getUserByUsername);
-router.delete('/profile/:id', authenticateToken, deleteUser); // Define the route for deleting a user
+router.delete('/profile/:username', authenticateToken, deleteUser); // Define the route for deleting a user
 
 export default router;
