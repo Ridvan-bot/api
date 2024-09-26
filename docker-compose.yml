@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "${PORT:-3000}:3000"  # Map the container's port to the host port using the environment variable
+    environment:
+      - JWT_SECRET=${JWT_SECRET}
+      - DATABASE_URL=${DATABASE_URL}
+      - PORT=${PORT:-3000}  # Set the PORT environment variable in the container
+    depends_on:
+      - redis
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
