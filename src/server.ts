@@ -2,6 +2,7 @@
 import express, { Request, Response } from 'express'; // Import Request and Response correctly
 import dotenv from 'dotenv';
 import routes from './routes/index'; // Central routes file
+import corsMiddleware from './lib/middleware/cors'; // Import the CORS middleware
 
 // Load environment variables
 dotenv.config();
@@ -24,6 +25,9 @@ app.use(logger);
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
+
+// Use CORS middleware
+app.use(corsMiddleware);
 
 // Register all routes with a common prefix
 app.use('/api/v1', routes); 
