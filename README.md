@@ -60,7 +60,7 @@ Create a new migration:
 1. **Use the following command to create a migration based on your changes**:
 
     ```bash
-    npx prisma migrate dev --name <migration-name>
+    npm run prisma:migrate dev --name <migration-name>
 
 Replace <migration-name> with a descriptive name for your migration, such as add-username-to-user.
 
@@ -69,7 +69,7 @@ After creating the migration, run the following command to regenerate the Prisma
 2. **Generate the Prisma Client**:
 
     ```bash
-    npx prisma generate
+    npm run prisma:generate
 
 
 Deploy your migrations (optional):
@@ -77,7 +77,7 @@ Deploy your migrations (optional):
 3. **If you're ready to deploy your migrations, run**:
 
     ```bash
-    npx prisma migrate deploy
+    npm run prisma:deploy
 
 
 
