@@ -5,7 +5,7 @@ FROM node:16
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json
-COPY package*.json ./
+COPY ["package*.json", "package-lock.json","./"]
 
 # Install dependencies
 RUN npm install
@@ -16,5 +16,8 @@ COPY . .
 # Expose the application port
 EXPOSE 3000
 
+# Build the TypeScript code
+RUN npm run build
+
 # Command to run the application
-CMD ["npm", "start"]
+CMD ["npm", "run","start"]

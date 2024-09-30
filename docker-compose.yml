@@ -1,18 +1,36 @@
-version: '3.8'
+version: '3.8'  # You can omit this line if you don't want versioning
 
 services:
-  api:
-    build: .
+  postgres:
+    image: postgres:latest
+    container_name: postgresdb
+    environment:
+      POSTGRES_USER: postgreuser
+      POSTGRES_PASSWORD: bEbovaCb90
+      POSTGRES_DB: postgredb
     ports:
-      - "${PORT:-3000}:3000"  # Map the container's port to the host port using the environment variable
+      - "5432:5432"  # Maps port 5432 of the container to port 5432 on the host machine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persist data across container restarts
+    networks:
+      - api-network  # Custom network for communication
+
+  api:
+    build: .  # Assuming you have a Dockerfile in the current directory for the API service
+    ports:
+      - "${PORT:-3000}:3000"  # Map the container's port to the host port using an environment variable
+    command: sh -c "npx prisma migrate dev --name init && npm run start"
     environment:
       - JWT_SECRET=${JWT_SECRET}
-      - DATABASE_URL=${DATABASE_URL}
+      - DATABASE_URL=postgresql://postgreuser:bEbovaCb90@postgres:5432/postgredb  # Database connection string
       - PORT=${PORT:-3000}  # Set the PORT environment variable in the container
     depends_on:
-      - redis
+      - postgres  # Ensures the postgres service starts before the API service
+    networks:
+      - api-network  # Connect to the same network
 
-  redis:
-    image: "redis:alpine"
-    ports:
-      - "6379:6379"
+networks:
+  api-network:  # Define a network for communication between containers
+
+volumes:
+  postgres_data:  # Volume for persisting PostgreSQL data
