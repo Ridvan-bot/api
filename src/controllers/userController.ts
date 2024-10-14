@@ -25,7 +25,7 @@ export const register = async (req: Request, res: Response) => {
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
-
+    
     // Create a new user in the database
     const newUser = await prisma.user.create({
       data: {
@@ -33,6 +33,7 @@ export const register = async (req: Request, res: Response) => {
         username: username, // Adjust as per your User model
         email: email, // Assuming email is used as username
         password: hashedPassword,
+        authentication: 'EmailPassword', // Add the correct authentication method here
       },
     });
 
