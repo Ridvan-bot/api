@@ -1,5 +1,5 @@
 // Import Request and Response correctly
-import express, { Request, Response } from 'express'; // Import Request and Response correctly
+import express from 'express'; // Import Request and Response correctly
 import dotenv from 'dotenv';
 import routes from './routes/index'; // Central routes file
 import corsMiddleware from './lib/middleware/cors'; // Import the CORS middleware

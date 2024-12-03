@@ -5,10 +5,10 @@ FROM node:16
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json
-COPY ["package*.json", "package-lock.json","./"]
+COPY ["package*.json", "./"]
 
 # Install dependencies
-RUN npm install
+RUN npm install sharp
 
 # Copy the rest of the application code
 COPY . .
