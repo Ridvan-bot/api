@@ -14,7 +14,7 @@ RUN npm install sharp
 COPY . .
 
 # Expose the application port
-EXPOSE 3000
+EXPOSE 8080
 
 # Build the TypeScript code
 RUN npm run build
