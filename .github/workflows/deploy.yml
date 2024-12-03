@@ -59,22 +59,22 @@ jobs:
         run: |
           gcloud config set project ${{ env.BRANCH_NAME }}-api-pohlmanprotean
           gcloud config set run/region europe-west1
-          gcloud auth configure-docker gcr.io
+          gcloud auth configure-docker eu.gcr.io
 
       - name: Build Docker image
         run: |
-          docker build -t gcr.io/${{ env.BRANCH_NAME }}-api-pohlmanprotean/${{ env.BRANCH_NAME }}-api-pohlmanprotean-image:${{ env.LATEST_TAG }} -f Dockerfile .
+          docker build -t eu.gcr.io/${{ env.BRANCH_NAME }}-api-pohlmanprotean/${{ env.BRANCH_NAME }}-api-pohlmanprotean-image:${{ env.LATEST_TAG }} -f Dockerfile .
 
       - name: Push Docker image to Google Container Registry
         run: |
-          docker push gcr.io/${{ env.BRANCH_NAME }}-api-pohlmanprotean/${{ env.BRANCH_NAME }}-api-pohlmanprotean-image:${{ env.LATEST_TAG }}
+          docker push eu.gcr.io/${{ env.BRANCH_NAME }}-api-pohlmanprotean/${{ env.BRANCH_NAME }}-api-pohlmanprotean-image:${{ env.LATEST_TAG }}
       - name: Replace dots in tag for Cloud Run
         run: echo "REVISION_TAG=$(echo ${{ env.LATEST_TAG }} | sed 's/\./-/g')" >> $GITHUB_ENV
       
       - name: Deploy to Google Cloud Run
         run: |
           gcloud run deploy ${{ env.BRANCH_NAME }}-api-pohlmanprotean \
-          --image gcr.io/${{ env.BRANCH_NAME }}-api-pohlmanprotean/${{ env.BRANCH_NAME }}-api-pohlmanprotean-image:${{ env.LATEST_TAG }} \
+          --image eu.gcr.io/${{ env.BRANCH_NAME }}-api-pohlmanprotean/${{ env.BRANCH_NAME }}-api-pohlmanprotean-image:${{ env.LATEST_TAG }} \
           --platform managed \
           --region europe-west1 \
           --allow-unauthenticated \
