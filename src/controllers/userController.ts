@@ -83,8 +83,11 @@ export const getAllUserProfiles = async (req: Request, res: Response) => {
         id: true,
         name: true,
         username: true,
-        email: true, // Change to name if that’s the correct field
-        // Exclude the password field by not including it in the select statement
+        email: true, 
+        isActive: true,
+        createdAt: true,
+        updatedAt: true,
+        authentication: true
       },
     });
 
