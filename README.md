@@ -67,7 +67,7 @@ Replace <migration-name> with a descriptive name for your migration, such as add
 
 
 After creating the migration, run the following command to regenerate the Prisma Client:
-2. **Generate the Prisma Client**:
+2. ***Generate the Prisma Client***:
 
     ```bash
     npm run prisma:generate
