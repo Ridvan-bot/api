@@ -1,10 +1,18 @@
 
 
-# Project Name
+# API
 
 ## Overview
 
-A brief description of your project, its purpose, and what it does.
+This project is an API built with Node.js, Express, and Prisma. It provides endpoints for user authentication, user management, and profile management. The API supports operations such as user registration, login, profile updates, and more. It is designed to be use PostgreSQL as the database.
+
+Key features include:
+- User registration and authentication with JWT
+- Secure password hashing with bcrypt
+- User profile management
+- Prisma ORM for database interactions
+- Docker support for containerization
+
 
 ## Table of Contents
 
@@ -21,6 +29,7 @@ Before you begin, ensure you have met the following requirements:
 - Node.js installed (v14 or later)
 - npm installed (comes with Node.js)
 - Prisma installed globally (optional, can also use npx)
+- Setup a PostgreSQL database
 
 ## Getting Started
 
