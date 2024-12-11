@@ -59,7 +59,6 @@ describe('Test API Calls', () => {
   });
   it('Get users', async () => {
     try {
-      console.log(token);
       const response = await axios.get(
         'http://localhost:3000/api/v1/users',
         {
@@ -90,6 +89,30 @@ describe('Test API Calls', () => {
       throw error;
     }
   });
+
+  it('Update user', async () => {
+    try {
+      const response = await axios.put(
+        'http://localhost:3000/api/v1/users/profile/testuser',
+        {
+          name: 'Test User Updated',
+          email: 'updatetestuser@pohlmanprotean.se'
+        },
+        {
+          headers: {
+            'Authorization' : 'Bearer ' + token,
+          }
+        }
+      );
+      expect(response.status).toBe(200);
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  }
+  );
+
+
   it('Delete user', async () => {
     try {
       const response = await axios.delete(

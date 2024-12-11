@@ -92,6 +92,14 @@ Deploy your migrations (optional):
     npm run prisma:deploy
     ```
 
+## Running Jest Test
+
+To run the Jest tests, ensure that the Express server is running locally. The Jest tests will send GET, PUT, POST, and DELETE requests to the API. Follow these steps to run the tests:
+
+    ```bash
+    npm run dev
+    npm run test
+    ```
 
 
 ##

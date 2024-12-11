@@ -1,6 +1,9 @@
 # TODO List
 - [x] fix the issue with multiple dev-api-pohlmanprotean projects in GCP
-- [w] fix the secrets. Build failes due to the lack of databse secretes in GCP. 
+- [ ] Secure the API with roles. 
+- [ ] A created user should only be able to manage it's own users and scope.
+- [w] build API call tests
+
 
 
 
