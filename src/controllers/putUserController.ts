@@ -17,7 +17,6 @@ export const updateUser = async (req: Request, res: Response) => {
   if (authentication !== undefined) updateData.authentication = authentication;
 
   try {
-    console.log(updateData);
     // Find and update the user by username
     const updatedUser = await prisma.user.update({
       where: { username: username },

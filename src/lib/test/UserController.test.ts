@@ -1,133 +1,101 @@
 import request from 'supertest';
-import axios from 'axios';
-import dotenv from 'dotenv';
+import express from 'express';
+import router from '../../routes/index';
 
-// Load environment variables
-dotenv.config();
+// Create an instance of the Express app
+const app = express();
+app.use(express.json());
+app.use('/api/v1', router);
+
 let token: string;
 
-describe('Test API Calls', () => {
-  it('Test welcome message', async () => {
-    const response = await request('http://localhost:3000/api/v1/welcome').get('/');
-    expect(response.status).toBe(200);
-  });
-
-  it('Create a test user', async () => {
+describe('Test Welcome route API Calls', () => {
+  it('Post /users/register', async () => {
     try {
-      const response = await axios.post(
-        'http://localhost:3000/api/v1/users/register',
-        {
+      const response = await request(app).post(
+        '/api/v1/users/register')
+        .send({
           name: 'Test User',
           username: 'testuser',
           email: 'testuser@pohlmanprotean.se',
           password: 'losenordet',
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        }
-      );
+        })
+        .set('Content-Type', 'application/json');
       expect(response.status).toBe(201);
     } catch (error) {
       console.error('Error:', error);
       throw error;
     }
   });
-
-  it('Get Token', async () => {
+  it('Post /auth/login', async () => {
     try {
-      const response = await axios.post(
-        'http://localhost:3000/api/v1/auth/login',
-        {
+      const response = await request(app).post(
+        '/api/v1/auth/login')
+        .send({
           username: 'testuser',
           password: 'losenordet',
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        }
-      );
+        })
+        .set('Content-Type', 'application/json');
       expect(response.status).toBe(200);
-      expect(response.data.token).toBeDefined();
-      token = response.data.token;
+      expect(response.body.token).toBeDefined();
+      token = response.body.token;
     } catch (error) {
       console.error('Error:', error);
       throw error;
     }
   });
-  it('Get users', async () => {
+  it('Get /users', async () => {
     try {
-      const response = await axios.get(
-        'http://localhost:3000/api/v1/users',
-        {
-          headers: {
-            'Authorization' : 'Bearer ' + token,
-          }
-  }
-      );
+      const response = await request(app).get('/api/v1/users')
+        .set('Authorization', `Bearer ${token}`);
       expect(response.status).toBe(200);
     } catch (error) {
       console.error('Error:', error);
       throw error;
     }
   });
-  it('Get user by username', async () => {
+  it('Get /users/profiles', async () => {
     try {
-      const response = await axios.get(
-        'http://localhost:3000/api/v1/users/profile/testuser',
-        {
-          headers: {
-            'Authorization' : 'Bearer ' + token,
-          }
-        }
-      );
+      const response = await request(app).get('/api/v1/users/profiles')
+        .set('Authorization', `Bearer ${token}`);
       expect(response.status).toBe(200);
     } catch (error) {
       console.error('Error:', error);
       throw error;
     }
   });
-
-  it('Update user', async () => {
+  it('Get /users/profile/:username', async () => {
     try {
-      const response = await axios.put(
-        'http://localhost:3000/api/v1/users/profile/testuser',
-        {
-          name: 'Test User Updated',
+      const response = await request(app).get('/api/v1/users/profile/testuser')
+        .set('Authorization', `Bearer ${token}`);
+      expect(response.status).toBe(200);
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  });
+  it('Put /users/profile/:username', async () => {  
+    try {
+      const response = await request(app).put('/api/v1/users/profile/testuser')
+        .send({
+          name: 'Updated Test User',
           email: 'updatetestuser@pohlmanprotean.se'
-        },
-        {
-          headers: {
-            'Authorization' : 'Bearer ' + token,
-          }
-        }
-      );
+        })
+        .set('Authorization', `Bearer ${token}`)
+        expect(response.status).toBe(200);
+      } catch (error) {
+        console.error('Error:', error);
+        throw error;
+      }
+  });
+  it('Delete /users/profile/:username', async () => {
+    try {
+      const response = await request(app).delete('/api/v1/users/profile/testuser')
+        .set('Authorization', `Bearer ${token}`);
       expect(response.status).toBe(200);
     } catch (error) {
       console.error('Error:', error);
       throw error;
     }
-  }
-  );
-
-
-  it('Delete user', async () => {
-    try {
-      const response = await axios.delete(
-        'http://localhost:3000/api/v1/users/profile/testuser',
-        {
-          headers: {
-            'Authorization' : 'Bearer ' + token,
-          }
-        }
-      );
-      expect(response.status).toBe(200);
-    }
-    catch (error) {
-      console.error('Error:', error);
-      throw error;
-    }
-  }
-)});
+  });
+});
