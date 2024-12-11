@@ -9,7 +9,7 @@ app.use('/api/v1', router);
 
 let token: string;
 
-describe('Test Welcome route API Calls', () => {
+describe('Test User route API Calls', () => {
   it('Post /users/register', async () => {
     try {
       const response = await request(app).post(
