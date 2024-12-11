@@ -1,5 +1,3 @@
-
-
 # API
 
 ## Overview
@@ -94,13 +92,15 @@ Deploy your migrations (optional):
 
 ## Running Jest Test
 
-To run the Jest tests, ensure that the Express server is running locally. The Jest tests will send GET, PUT, POST, and DELETE requests to the API. Follow these steps to run the tests:
+The Jest tests use supertest to send GET, PUT, POST, and DELETE requests to the API. Follow these steps to run the tests:
 
     ```bash
-    npm run dev
     npm run test
     ```
 
+Additionally, there is a workflow configured to run the tests automatically before every deploy, ensuring that your API is always in a working state.
+
+By following these steps, you can ensure that your API is working correctly and that all endpoints are functioning as expected.
 
 ##
 Crafted with care by **Robin Pohlman** at **Pohlman Protean AB**.
