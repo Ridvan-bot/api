@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc && node dist/server.js",
-    "test": "ts-node src/lib/test/test.ts",
+    "test": "jest",
     "dev": "tsc && nodemon dist/server.js",
     "prisma:migrate": "prisma migrate dev --name",
     "prisma:generate": "prisma generate",
@@ -28,9 +28,14 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/express-rate-limit": "^6.0.0",
+    "@types/jest": "^29.5.14",
     "@types/node": "^22.6.1",
+    "@types/supertest": "^6.0.2",
+    "jest": "^29.7.0",
     "nodemon": "^3.1.7",
     "prisma": "^6.0.1",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2"
   },

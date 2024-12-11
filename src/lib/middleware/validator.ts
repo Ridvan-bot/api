@@ -6,11 +6,9 @@ import { validationResult } from 'express-validator';
 //If not, it returns a 400 Bad Request with the list of validation errors.
 const validateRequest = (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
-    
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-
     next();
 };
 
