@@ -3,10 +3,10 @@ import {
 getUserProfiles, 
 getUserByUsername, 
 getUsers,
- } from '../controllers/getUserController'; 
-import { updateUser } from '../controllers/putUserController';
-import { deleteUser } from '../controllers/deleteUserController';
-import { register} from '../controllers/postUserController';
+ } from '../controllers/userControllers/getUserController'; 
+import { updateUser } from '../controllers/userControllers/putUserController';
+import { deleteUser } from '../controllers/userControllers/deleteUserController';
+import { register} from '../controllers/userControllers/postUserController';
 import authenticateToken from '../lib/middleware/authentication';
 import registerLimiter from '../lib/middleware/registerRateLimit';
 import { userValidationRules } from '../lib/validation/userValidation';

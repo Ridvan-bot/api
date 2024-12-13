@@ -3,6 +3,7 @@
 - [ ] Secure the API with roles. 
 - [ ] A created user should only be able to manage it's own users and scope.
 - [w] build API call tests, use supertest to run test before deployment
+- [ ] fix user not found in delete request
 
 
 
