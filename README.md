@@ -98,8 +98,10 @@ The Jest tests use supertest to send GET, PUT, POST, and DELETE requests to the 
     npm run test
     ```
 
-Additionally, there is a workflow configured to run the tests automatically before every deploy, ensuring that your API is always in a working state.
+The tests are configured to run automatically before every deploy, ensuring that your API is always in a working state. The tests include:
 
+User route API calls: Tests for user registration, login, profile updates, and more.
+Global setup and teardown: Ensures that a test user is created before tests run and deleted after tests complete.
 By following these steps, you can ensure that your API is working correctly and that all endpoints are functioning as expected.
 
 ##
