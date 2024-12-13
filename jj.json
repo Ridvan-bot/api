@@ -1,0 +1,6 @@
+JWT_SECRET=your_secret_key_here
+PORT = 3000
+DATABASE_URL_Docker= postgresql://postgreuser:bEbovaCb90@postgres:5432/postgredb
+DATABASE_URL="postgresql://postgres:bEbovaCb90@localhost:5432/postgres"
+NODE_ENV = DEV
+API-Key = AIzaSyAO2goLlotCVsjXD1gB9E7P96wdf21I02Q

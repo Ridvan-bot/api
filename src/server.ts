@@ -7,7 +7,6 @@ import routes from './routes/index'; // Central routes file
 dotenv.config();
 
 if (
-    !process.env.JWT_SECRET ||
     !process.env.DATABASE_URL ||
     !process.env.PORT
 )
