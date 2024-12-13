@@ -15,6 +15,7 @@ jobs:
       unit-test-enable: true
     secrets:
       token: ${{ secrets.GH_TOKEN }}
+      database_url: ${{ secrets.DATABASE_URL }}
 
   execute-release:
     needs: execute-code-quality-validation

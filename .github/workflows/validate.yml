@@ -31,6 +31,8 @@ on:
     secrets:
       token:
         required: true
+      database_url:
+        required: false
 jobs:
   call-nodejs-test-workflow:
     name: Node.js Test
@@ -43,3 +45,4 @@ jobs:
       branch: ${{ inputs.branches }}
     secrets:
       token: ${{ secrets.GH_TOKEN }}
+      database_url: ${{ secrets.DATABASE_URL }}
