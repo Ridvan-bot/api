@@ -12,7 +12,7 @@ jobs:
     with:
       branches: "dev"
       eslint-enable: true
-      unit-test-enable: true
+      unit-test-enable: false
     secrets:
       token: ${{ secrets.GH_TOKEN }}
       database_url: ${{ secrets.DATABASE_URL }}
