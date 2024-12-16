@@ -18,6 +18,8 @@ Key features include:
 - [Getting Started](#getting-started)
 - [Running the Application](#running-the-application)
 - [Updating the Prisma Schema](#updating-the-prisma-schema)
+- [Error Handling](#error-handling)
+- [Running Jest Test](#running-jest-test)
 - [License](#license)
 
 ## Prerequisites
@@ -89,6 +91,11 @@ Deploy your migrations (optional):
     ```bash
     npm run prisma:deploy
     ```
+
+## Error Handling
+
+This project uses the `NextFunction` from the Express server to handle errors. The `NextFunction` is used in middleware to pass control to the next middleware function. In this project, it is used in the `errorHandler` middleware to handle errors globally.
+
 
 ## Running Jest Test
 
