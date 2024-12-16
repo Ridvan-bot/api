@@ -29,10 +29,9 @@ app.use(express.json());
 // Register all routes with a common prefix
 app.use('/api/v1', routes); 
 
-// Middleware to handle invalid routes
 app.use((req, res, next) => {
-    res.status(404).json({ message: 'Resource not found' });
-  });
+ res.status(404).json({ message: 'Resource not found' });
+ });
 
 // Error handling middleware
 app.use(errorHandler);
