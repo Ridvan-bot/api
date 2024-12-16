@@ -2,9 +2,7 @@ import { Router } from 'express';
 import authRoutes from './authRoutes';
 import userRoutes from './userRoutes';
 import welcomeRoutes from './welcomeRoutes';
-import roles from './roleRoutes';
-
-
+import  roles from './roleRoutes';
 
 const router = Router();
 
