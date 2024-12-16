@@ -19,16 +19,25 @@ describe('Test User route API Calls', () => {
     const token = getToken();
     const response = await request(app).post('/api/v1/roles')
         .send({
-            name: 'Test'
+            name: 'test'
         })
       .set('Authorization', `Bearer ${token}`);
     expect(response.status).toBe(200);
   });
+  // it('put /roles/:role', async () => {
+  //   const token = getToken();
+  //   const response = await request(app).delete('/api/v1/roles/test')
+  //     .send({
+  //       name: 'newTest',
+  //     })
+  //     .set('Authorization', `Bearer ${token}`);
+  //   expect(response.status).toBe(200);
+  // });
   it('Delete /users/profile/:username', async () => {
     const token = getToken();
     const response = await request(app).delete('/api/v1/roles')
       .send({
-        name: 'Test',
+        name: 'test',
       })
       .set('Authorization', `Bearer ${token}`);
     expect(response.status).toBe(200);
