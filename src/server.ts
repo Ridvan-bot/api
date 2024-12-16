@@ -1,8 +1,8 @@
 // Import Request and Response correctly
-import express from 'express'; // Import Request and Response correctly
+import express from 'express';
 import dotenv from 'dotenv';
-import routes from './routes/index'; // Central routes file
-import { errorHandler } from './lib/errorHandling/errorHandler'; // Importera felhanteraren
+import routes from './routes/index';
+import { errorHandler } from './lib/errorHandling/errorHandler';
 
 
 // Load environment variables
@@ -28,6 +28,11 @@ app.use(express.json());
 
 // Register all routes with a common prefix
 app.use('/api/v1', routes); 
+
+// Middleware to handle invalid routes
+app.use((req, res, next) => {
+    res.status(404).json({ message: 'Resource not found' });
+  });
 
 // Error handling middleware
 app.use(errorHandler);
