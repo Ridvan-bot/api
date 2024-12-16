@@ -1,18 +1,14 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const register = async (req: Request, res: Response) => {
+export const register = async (req: Request, res: Response, next: NextFunction) => {
   const { name, username, email, password } = req.body;
 
   try {
-    // Validate input
-    if (!name || !username || !password || !email) {
-      return res.status(400).json({ message: 'Invalid input: name, username, password, and email are required' });
-    }
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({
       where: { username: username },
@@ -38,12 +34,11 @@ export const register = async (req: Request, res: Response) => {
 
     res.status(201).json({ message: 'User registered successfully', user: newUser });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
+    next(error);
   }
 };
 
-export const login = async (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response,  next: NextFunction) => {
   const { username, password } = req.body;
 
   try {
@@ -69,7 +64,6 @@ export const login = async (req: Request, res: Response) => {
 
     res.json({ message: 'Login successful', token });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
+    next(error);
   }
 };

@@ -2,6 +2,8 @@
 import express from 'express'; // Import Request and Response correctly
 import dotenv from 'dotenv';
 import routes from './routes/index'; // Central routes file
+import { errorHandler } from './lib/errorHandling/errorHandler'; // Importera felhanteraren
+
 
 // Load environment variables
 dotenv.config();
@@ -26,6 +28,9 @@ app.use(express.json());
 
 // Register all routes with a common prefix
 app.use('/api/v1', routes); 
+
+// Error handling middleware
+app.use(errorHandler);
 
 // Start the server
 app.listen(PORT, () => {
