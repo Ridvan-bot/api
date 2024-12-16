@@ -9,7 +9,10 @@ import { deleteUser } from '../controllers/userControllers/deleteUserController'
 import { register} from '../controllers/userControllers/postUserController';
 import authenticateToken from '../lib/middleware/authentication';
 import registerLimiter from '../lib/middleware/registerRateLimit';
-import { userValidationRules } from '../lib/validation/userValidation';
+import { 
+    userValidationRules,
+    updateUserValidationRules
+ } from '../lib/validation/userValidation';
 import validateRequest from '../lib/middleware/validate';
 
 
@@ -19,7 +22,7 @@ const router = Router();
 
 // Apply the rate limiter and validation before the register handler
 router.post('/register', registerLimiter, userValidationRules, validateRequest, register);
-router.put('/profile/:username', authenticateToken, updateUser);
+router.put('/profile/:username', updateUserValidationRules, authenticateToken, validateRequest, updateUser);
 router.get('/profiles/', authenticateToken, getUserProfiles);
 router.get('/profile/:username', authenticateToken, getUserByUsername);
 router.get('/', authenticateToken, getUsers )
