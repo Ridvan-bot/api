@@ -5,8 +5,8 @@
 - [x] Improve error handling.
 - [ ] Use shared workflow for unit test? Solve database URL in that case.
 - [ ] Look into swagger.
-- [ ] Secure the API with roles. 
-- [ ] A created user should only be able to manage it's own users and scope.
+- [w] Secure the API with roles. 
+- [w] A created user should only be able to manage it's own users and scope.
 
 
 
