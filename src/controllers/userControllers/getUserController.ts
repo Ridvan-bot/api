@@ -1,10 +1,10 @@
-import { Request, Response } from 'express';
-import { PrismaClient, Prisma } from '@prisma/client';
+import { Request, Response, NextFunction } from 'express';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 // Controller to get user profile
-export const getUserProfiles = async (req: Request, res: Response) => {
+export const getUserProfiles = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // Fetch all user profiles from the database, excluding the password field
     const users = await prisma.user.findMany({
@@ -26,12 +26,11 @@ export const getUserProfiles = async (req: Request, res: Response) => {
       users,  // Return all the users without passwords
     });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
+    next(error);
   }
 };
 
-export const getUserByUsername = async (req: Request, res: Response) => {
+export const getUserByUsername = async (req: Request, res: Response, next: NextFunction) => {
   const username = req.params.username; // Get the username from the URL
 
   try {
@@ -54,12 +53,11 @@ export const getUserByUsername = async (req: Request, res: Response) => {
     // Return the user profile
     res.json(user);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
+    next(error);
   }
 };
 
-export const getUsers = async (req: Request, res: Response) => {
+export const getUsers = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // Fetch all users from the database
     const users = await prisma.user.findMany();
@@ -70,7 +68,6 @@ export const getUsers = async (req: Request, res: Response) => {
       users,
     });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
+next(error);
   }
 };
