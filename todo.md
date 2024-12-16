@@ -7,6 +7,9 @@
 - [ ] fix user not found in delete request.
 - [w] Imprve error handling.
 - [ ] Look into swagger.
+- [x] Improve error handler using nextFunction from express.js
+
+
 
 
 
