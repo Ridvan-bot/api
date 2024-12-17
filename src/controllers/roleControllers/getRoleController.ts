@@ -11,3 +11,18 @@ export const getRoles = async (req: Request, res: Response, next: NextFunction) 
       next(error)
     }
   };
+
+  export const getRole = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const role = await prisma.role.findMany(
+        {
+          where: {
+            name: req.params.name
+          }
+        }
+      );
+      res.json({role});
+    } catch (error) {
+      next(error)
+    }
+  };

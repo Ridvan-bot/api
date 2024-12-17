@@ -16,7 +16,7 @@ const globalTeardown = async () => {
     .set('Authorization', `Bearer ${token}`);
 
   await request(app)
-    .delete('/api/v1/roles/')
+    .delete('/api/v1/role/')
     .send({ name: 'newtest' })
     .set('Authorization', `Bearer ${token}`);
   // Delete the token file
