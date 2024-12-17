@@ -1,14 +1,31 @@
 import { Router } from 'express';
-import { getAllUserProfiles, getUserByUsername, deleteUser, register } from '../controllers/userController'; 
+import { 
+getUserProfiles, 
+getUserByUsername, 
+getUsers,
+ } from '../controllers/userControllers/getUserController'; 
+import { updateUser } from '../controllers/userControllers/putUserController';
+import { deleteUser } from '../controllers/userControllers/deleteUserController';
+import { register} from '../controllers/userControllers/postUserController';
 import authenticateToken from '../lib/middleware/authentication';
 import registerLimiter from '../lib/middleware/registerRateLimit';
+import { 
+    userValidationRules,
+    updateUserValidationRules
+ } from '../lib/validation/userValidation';
+import validateRequest from '../lib/middleware/validate';
 
 
+
+// Register routes
 const router = Router();
-// Apply the rate limiter before the register handler 
-router.post('/register', registerLimiter, register);
-router.get('/profiles/', authenticateToken, getAllUserProfiles);
+
+// Apply the rate limiter and validation before the register handler
+router.post('/register', registerLimiter, userValidationRules, validateRequest, register);
+router.put('/profile/:username', updateUserValidationRules, authenticateToken, validateRequest, updateUser);
+router.get('/profiles/', authenticateToken, getUserProfiles);
 router.get('/profile/:username', authenticateToken, getUserByUsername);
-router.delete('/profile/:username', authenticateToken, deleteUser); // Define the route for deleting a user
+router.get('/', authenticateToken, getUsers )
+router.delete('/profile/:username', authenticateToken, deleteUser); 
 
 export default router;

@@ -1,13 +1,14 @@
 // Import Request and Response correctly
-import express, { Request, Response } from 'express'; // Import Request and Response correctly
+import express from 'express';
 import dotenv from 'dotenv';
-import routes from './routes/index'; // Central routes file
+import routes from './routes/index';
+import { errorHandler } from './lib/errorHandling/errorHandler';
+
 
 // Load environment variables
 dotenv.config();
 
 if (
-    !process.env.JWT_SECRET ||
     !process.env.DATABASE_URL ||
     !process.env.PORT
 )
@@ -28,7 +29,14 @@ app.use(express.json());
 // Register all routes with a common prefix
 app.use('/api/v1', routes); 
 
+app.use((req, res, next) => {
+ res.status(404).json({ message: 'Resource not found' });
+ });
+
+// Error handling middleware
+app.use(errorHandler);
+
 // Start the server
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT}/api/v1/welcome`);
 });

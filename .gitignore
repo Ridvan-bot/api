@@ -33,3 +33,5 @@ logs
 /prisma/.env                  # Ignore environment variables file
 /prisma/schema.prisma         # Generally, keep this file under version control
 
+package-lock.json
+yarn.lock

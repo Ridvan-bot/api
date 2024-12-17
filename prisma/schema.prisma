@@ -1,22 +1,67 @@
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  name     String
-  username String @unique
-  email    String 
-  password String
+  id               Int        @id @default(autoincrement())
+  name             String
+  username         String     @unique
+  email            String     @unique
+  password         String
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  isActive         Boolean    @default(true)
+  authentication   Authentication_Method
+  profile          Profile?
+  roleId           Int?
+  role             Role?      @relation(fields: [roleId], references: [id])
+  userGroups       UserGroup[]
 }
 
-enum Authentication_Metod {
+model Profile {
+  id         Int      @id @default(autoincrement())
+  bio        String?
+  avatarUrl  String?
+  userId     Int      @unique
+  user       User     @relation(fields: [userId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Role {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  users      User[]
+}
+
+model Group {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  userGroups UserGroup[]
+}
+
+model UserGroup {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  groupId    Int
+  user       User     @relation(fields: [userId], references: [id])
+  group      Group    @relation(fields: [groupId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([userId, groupId])
+}
+
+enum Authentication_Method {
   AUTH0
   SuperToken
+  Google
+  GitHub
+  EmailPassword
 }

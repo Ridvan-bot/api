@@ -2,7 +2,6 @@
 import { Request, Response, NextFunction } from 'express';
 import Redis from 'ioredis';
 import { InMemoryStoreEntry } from '../../types/types';
-import rateLimit from 'express-rate-limit';
 
 // Create a Redis client
 const redisClient = new Redis({
