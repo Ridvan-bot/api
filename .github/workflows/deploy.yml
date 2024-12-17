@@ -26,10 +26,10 @@ jobs:
     secrets:
       token: ${{ secrets.GH_TOKEN }}
       slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
-   deploy:
+deploy:
      needs: execute-release
      runs-on: ubuntu-22.04
-  #   if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
+     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
      steps:
        - name: Checkout code
          uses: actions/checkout@v4
