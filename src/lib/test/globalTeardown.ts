@@ -12,11 +12,12 @@ const globalTeardown = async () => {
   const token = getToken();
   // Delete the test user
   await request(app)
-    .delete('/api/v1/users/profile/testuser')
+    .delete('/api/v1/user/testuser')
     .set('Authorization', `Bearer ${token}`);
 
   await request(app)
-    .delete('/api/v1/roles/newtest')
+    .delete('/api/v1/roles/')
+    .send({ name: 'newtest' })
     .set('Authorization', `Bearer ${token}`);
   // Delete the token file
   deleteTokenFile();

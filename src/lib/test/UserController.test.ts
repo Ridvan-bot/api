@@ -15,21 +15,15 @@ describe('Test User route API Calls', () => {
       .set('Authorization', `Bearer ${token}`);
     expect(response.status).toBe(200);
   });
-  it('Get /users/profiles', async () => {
+  it('Get /user/:username', async () => {
     const token = getToken();
-    const response = await request(app).get('/api/v1/users/profiles')
+    const response = await request(app).get('/api/v1/user/testuser')
       .set('Authorization', `Bearer ${token}`);
     expect(response.status).toBe(200);
   });
-  it('Get /users/profile/:username', async () => {
+  it('Put /user/:username', async () => {
     const token = getToken();
-    const response = await request(app).get('/api/v1/users/profile/testuser')
-      .set('Authorization', `Bearer ${token}`);
-    expect(response.status).toBe(200);
-  });
-  it('Put /users/profile/:username', async () => {
-    const token = getToken();
-    const response = await request(app).put('/api/v1/users/profile/testuser')
+    const response = await request(app).put('/api/v1/user/testuser')
       .send({
         name: 'Updated Test User',
         email: 'updatetestuser@pohlmanprotean.se'

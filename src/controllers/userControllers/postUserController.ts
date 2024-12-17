@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
 
+
 const prisma = new PrismaClient();
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
@@ -63,6 +64,28 @@ export const login = async (req: Request, res: Response,  next: NextFunction) =>
     });
 
     res.json({ message: 'Login successful', token });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const createProfile = async (req: Request, res: Response, next: NextFunction) => {
+
+  const { bio, avatarUrl, userId, user } = req.body;
+
+  try {
+    
+    // Create a new user in the database
+    const newUser = await prisma.profile.create({
+      data: {
+        bio: bio,
+        avatarUrl: avatarUrl,
+        userId: userId,
+        user: user
+      },
+    });
+
+    res.status(201).json({ message: 'Profile registered successfully'});
   } catch (error) {
     next(error);
   }
