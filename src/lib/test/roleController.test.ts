@@ -15,18 +15,18 @@ describe('Test User route API Calls', () => {
       .set('Authorization', `Bearer ${token}`);
     expect(response.status).toBe(200);
   });
-  it('Post /roles', async () => {
+  it('Post /role', async () => {
     const token = getToken();
-    const response = await request(app).post('/api/v1/roles')
+    const response = await request(app).post('/api/v1/role')
         .send({
             name: 'test'
         })
       .set('Authorization', `Bearer ${token}`);
     expect(response.status).toBe(200);
   });
-  it('Put /roles/:role', async () => {
+  it('Put /role/:role', async () => {
     const token = getToken();
-    const response = await request(app).put('/api/v1/roles/test')
+    const response = await request(app).put('/api/v1/role/test')
       .send({
         name: 'newtest',
       })
