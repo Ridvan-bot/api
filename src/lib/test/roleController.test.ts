@@ -15,7 +15,7 @@ describe('Test User route API Calls', () => {
       .set('Authorization', `Bearer ${token}`);
     expect(response.status).toBe(200);
   });
-  it('Post /users/roles', async () => {
+  it('Post /roles', async () => {
     const token = getToken();
     const response = await request(app).post('/api/v1/roles')
         .send({
@@ -24,20 +24,11 @@ describe('Test User route API Calls', () => {
       .set('Authorization', `Bearer ${token}`);
     expect(response.status).toBe(200);
   });
-  // it('put /roles/:role', async () => {
-  //   const token = getToken();
-  //   const response = await request(app).delete('/api/v1/roles/test')
-  //     .send({
-  //       name: 'newTest',
-  //     })
-  //     .set('Authorization', `Bearer ${token}`);
-  //   expect(response.status).toBe(200);
-  // });
-  it('Delete /users/profile/:username', async () => {
+  it('Put /roles/:role', async () => {
     const token = getToken();
-    const response = await request(app).delete('/api/v1/roles')
+    const response = await request(app).put('/api/v1/roles/test')
       .send({
-        name: 'test',
+        name: 'newtest',
       })
       .set('Authorization', `Bearer ${token}`);
     expect(response.status).toBe(200);

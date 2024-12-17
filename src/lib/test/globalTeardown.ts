@@ -14,7 +14,10 @@ const globalTeardown = async () => {
   await request(app)
     .delete('/api/v1/users/profile/testuser')
     .set('Authorization', `Bearer ${token}`);
-  
+
+  await request(app)
+    .delete('/api/v1/roles/newtest')
+    .set('Authorization', `Bearer ${token}`);
   // Delete the token file
   deleteTokenFile();
 };
