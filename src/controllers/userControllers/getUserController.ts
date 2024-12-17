@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 // Controller to get user profile
-export const getUserProfiles = async (req: Request, res: Response, next: NextFunction) => {
+export const getUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // Fetch all user profiles from the database, excluding the password field
     const users = await prisma.user.findMany({

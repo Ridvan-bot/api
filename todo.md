@@ -5,8 +5,10 @@
 - [x] Improve error handling.
 - [ ] Use shared workflow for unit test? Solve database URL in that case.
 - [ ] Look into swagger.
-- [w] Secure the API with roles. 
-- [w] A created user should only be able to manage it's own users and scope.
+- [wait] Secure the API with roles. 
+- [wait] A created user should only be able to manage it's own users and scope.
+- [w] Setup profile logic
+
 
 
 

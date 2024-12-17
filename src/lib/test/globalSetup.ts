@@ -11,7 +11,7 @@ app.use('/api/v1', router);
 const setupUserAndToken = async () => {
   try {
     // Create a test user
-    const registerResponse = await request(app).post('/api/v1/users/register')
+    const registerResponse = await request(app).post('/api/v1/user/register')
       .send({
         name: 'Test User',
         username: 'testuser',
