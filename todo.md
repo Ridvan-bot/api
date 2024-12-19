@@ -10,7 +10,8 @@
 - [wait] Secure the API with roles. 
 - [wait] A created user should only be able to manage it's own users and scope.
 - [x] setup route for profile
-- [w] setup route for group
+- [x] setup route for group
+- [w] setup test for route group
 
 
 
