@@ -7,7 +7,7 @@ export const deleteProfile = async (req: Request, res: Response, next: NextFunct
     try {
         const profile  = req.body.id;
         const profileId = parseInt(profile, 10);
-      const deletprofile = await prisma.profile.delete(
+      const deletrole = await prisma.profile.delete(
         {
           where: {
             id: profileId,
@@ -15,8 +15,8 @@ export const deleteProfile = async (req: Request, res: Response, next: NextFunct
         }
       );
         res.json({
-            message: 'Profile deleted',
-            profile: deletprofile
+            message: 'Role deleted',
+            role: deletrole
         });
     } catch (error) {
       next(error)

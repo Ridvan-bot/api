@@ -9,9 +9,8 @@
 - [ ] One more rate limit for all other requests
 - [wait] Secure the API with roles. 
 - [wait] A created user should only be able to manage it's own users and scope.
-- [w] Setup profile logic
-
-
+- [x] setup route for profile
+- [w] setup route for group
 
 
 
