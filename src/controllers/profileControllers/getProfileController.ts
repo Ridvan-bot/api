@@ -5,8 +5,8 @@ const prisma = new PrismaClient();
 
 export const getProfiles = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const roles = await prisma.profile.findMany();
-      res.json(roles);
+      const profiles = await prisma.profile.findMany();
+      res.json(profiles);
     } catch (error) {
       next(error)
     }
