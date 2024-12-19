@@ -81,5 +81,9 @@ const extractRelevantMessage = (fullMessage: string): string => {
     return ('Multiple required arguments are missing');
   }
 
+  const unknownMatch = fullMessage.match(/Unknown argument `[^`]+`/);
+  if (unknownMatch) {
+    return unknownMatch[0];
+  }
   return fullMessage;
 };

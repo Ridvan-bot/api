@@ -3,20 +3,20 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const deleteProfile = async (req: Request, res: Response, next: NextFunction) => {
+export const deleteGroup = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const profile  = req.body.id;
-        const profileId = parseInt(profile, 10);
-      const deletrole = await prisma.profile.delete(
+        const group  = req.body.id;
+        const groupId = parseInt(group, 10);
+      const deleteGroup = await prisma.group.delete(
         {
           where: {
-            id: profileId,
+            id: groupId,
           }
         }
       );
         res.json({
-            message: 'Role deleted',
-            role: deletrole
+            message: 'Group deleted',
+            group: deleteGroup
         });
     } catch (error) {
       next(error)

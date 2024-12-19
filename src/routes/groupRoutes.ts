@@ -1,16 +1,17 @@
-// import { Router } from 'express';
-// import authenticateToken from '../lib/middleware/authentication';
-// import { createProfile } from '../controllers/groupControllers/postProfileController';
-// import { getProfile } from '../controllers/groupControllers/getGroupController';
-// import { updateProfile } from '../controllers/groupControllers/putProfileController';
-// import { deleteProfile } from '../controllers/groupControllers/deleteGroupController';
+import { Router } from 'express';
+import authenticateToken from '../lib/middleware/authentication';
+import { createGroup } from '../controllers/groupControllers/postGroupController';
+import { getGroup } from '../controllers/groupControllers/getGroupController';
+import { updateGroup } from '../controllers/groupControllers/putGroupController';
+import { deleteGroup } from '../controllers/groupControllers/deleteGroupController';
 
-// // Register routes
-// const router = Router();
 
-// router.get('/:group', authenticateToken, getProfile);
-// router.post('/', authenticateToken, createProfile)
-// router.delete('/', authenticateToken, deleteProfile,  );
-// router.put('/:group', authenticateToken, updateProfile);
+ // Register routes
+const router = Router();
 
-// export default router;
+router.get('/:group', authenticateToken, getGroup);
+router.post('/', authenticateToken, createGroup)
+router.delete('/', authenticateToken, deleteGroup,  );
+router.put('/:group', authenticateToken, updateGroup);
+
+export default router;

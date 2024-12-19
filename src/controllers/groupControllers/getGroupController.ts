@@ -12,13 +12,13 @@ export const getGroups = async (req: Request, res: Response, next: NextFunction)
     }
   };
 
-  export const getgroup = async (req: Request, res: Response, next: NextFunction) => {
+  export const getGroup = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const id = parseInt(req.params.profile, 10);
-      const group = await prisma.profile.findMany(
+      const groupName = req.params.group; 
+      const group = await prisma.group.findMany(
         {
           where: {
-            id: id
+            name: groupName
           }
         }
       );

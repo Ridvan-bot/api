@@ -3,27 +3,20 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const createProfile = async (req: Request, res: Response, next: NextFunction) => {
-  const { bio, avatarUrl } = req.body;
-  const userId = req.body.user.connect.id;
+export const createGroup = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    // Verify that the user exists
-     await prisma.user.findUnique({
-      where: { id: userId },
-    });
-
-    // create a profile for the user
-    const profile = await prisma.profile.create({
+    // create a group
+    const group = await prisma.group.create({
       data: {
-        bio: bio,
-        avatarUrl: avatarUrl,
-        user: {
-          connect: { id: userId },
-        },
+        name: req.body.name,
+        // Below is a future implementation
+        // userGroups: {
+        //   connect: { },
+        // },
       },
     });
 
-    res.status(201).json({ message: 'Profile created successfully', profile });
+    res.status(201).json({ message: 'group created successfully', group });
   } catch (error) {
     next(error);
   }
