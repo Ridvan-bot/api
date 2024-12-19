@@ -14,9 +14,10 @@ const app = express();
 app.use(express.json());
 app.use('/api/v1', router);
 
+
 const globalTeardown = async () => {
   const token = getToken();
-  const id = getId();
+  const id = getId('id');
   // Delete the test user
   await request(app)
     .delete('/api/v1/user/testuser')
@@ -31,10 +32,16 @@ const globalTeardown = async () => {
     .delete('/api/v1/profile/')
     .send({ id: id })
     .set('Authorization', `Bearer ${token}`);
-  // Delete the token file
-  deleteTokenFile();
-  deleteIdFile();
-  deleteTempDir();
+
+    const groupId = getId('groupId');
+    await request(app)
+    .delete('/api/v1/group/')
+    .send({ id: groupId })
+    .set('Authorization', `Bearer ${token}`);    
+    // Delete the token file
+    deleteTokenFile();
+    deleteIdFile();
+    deleteTempDir();
 };
 
 export default globalTeardown;

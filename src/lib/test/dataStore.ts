@@ -3,21 +3,36 @@ import path from 'path';
 
 const tempDir = path.join(__dirname, 'temp');
 const idFilePath = path.join(tempDir, 'id.json');
-const tokenFilePath = path.join(__dirname, 'token.json');
+const tokenFilePath = path.join(tempDir, 'token.json');
 
 if (!fs.existsSync(tempDir)) {
   fs.mkdirSync(tempDir);
 }
 
-export const setId = (newId: number) => {
-  fs.writeFileSync(idFilePath, JSON.stringify({ id: newId }));
+interface IdData {
+  [key: string]: number;
+}
+
+export const setId = (name: string, newId: number) => {
+  let data: IdData = {};
+  if (fs.existsSync(idFilePath)) {
+    data = JSON.parse(fs.readFileSync(idFilePath, 'utf8')) as IdData;
+  }
+  data[name] = newId;
+  fs.writeFileSync(idFilePath, JSON.stringify(data, null, 2));
 };
 
-export const getId = () => {
+export const getId = (idInput: string) => {
   if (fs.existsSync(idFilePath)) {
     const data = fs.readFileSync(idFilePath, 'utf8');
+    if (idInput === 'groupId') {
+      const { groupId } = JSON.parse(data);
+      return groupId;
+    }
+    else {
     const { id } = JSON.parse(data);
     return id;
+    }
   }
   return null;
 };

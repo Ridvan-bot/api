@@ -9,37 +9,37 @@ app.use(express.json());
 app.use('/api/v1', router);
 
 describe('Test User route API Calls', () => {
-    let id = 0;
-  it('Get /profiles', async () => {
+    let groupId = 0;
+  it('Get /groups', async () => {
     const token = getToken();
-    const response = await request(app).get('/api/v1/profiles')
+    const response = await request(app).get('/api/v1/groups')
       .set('Authorization', `Bearer ${token}`);
     expect(response.status).toBe(200);
   });
-  it('Post /profile', async () => {
+  it('Post /group', async () => {
     const token = getToken();
-    const response = await request(app).post('/api/v1/profile')
+    const response = await request(app).post('/api/v1/group')
         .send({
-            bio: 'The very First Bio',
-            avatarUrl: 'The very First Avatar',
-            user: {
-              connect: { id: 114 },
-            },
+            name: 'TestGroup',
+            // Below is a future implementation
+            // user: {
+            //   connect: { id: 114 },
+            // },
         })
       .set('Authorization', `Bearer ${token}`);
     expect(response.status).toBe(201);
-    id = response.body.profile.id;
-    setId('id', id);
+    groupId = response.body.group.id;
+    setId('groupId', groupId,);
   });
-  it('Put /profile/:profile', async () => {
+  it('Put /group/:group', async () => {
     const token = getToken();
-    const response = await request(app).put(`/api/v1/profile/${id}`)
+    const response = await request(app).put(`/api/v1/group/${groupId}`)
     .send({
-        bio: 'Updated Bio',
-        avatarUrl: 'Updated Avatar',
-        user: {
-          connect: { id: 163 },
-        },
+        name: 'Updated name',
+        // Below is a future implementation
+        // user: {
+        //   connect: { id: 163 },
+        // },
     })
       .set('Authorization', `Bearer ${token}`);
     expect(response.status).toBe(200);
