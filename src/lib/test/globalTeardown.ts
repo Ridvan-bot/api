@@ -1,7 +1,13 @@
 import request from 'supertest';
 import express from 'express';
 import router from '../../routes/index';
-import { getToken, deleteTokenFile } from './tokenManager';
+import { 
+  getToken, 
+  deleteTokenFile, 
+  getId, 
+  deleteIdFile,
+  deleteTempDir
+} from './dataStore';
 
 // Create an instance of the Express app
 const app = express();
@@ -10,6 +16,7 @@ app.use('/api/v1', router);
 
 const globalTeardown = async () => {
   const token = getToken();
+  const id = getId();
   // Delete the test user
   await request(app)
     .delete('/api/v1/user/testuser')
@@ -19,8 +26,15 @@ const globalTeardown = async () => {
     .delete('/api/v1/role/')
     .send({ name: 'newtest' })
     .set('Authorization', `Bearer ${token}`);
+
+    await request(app)
+    .delete('/api/v1/profile/')
+    .send({ id: id })
+    .set('Authorization', `Bearer ${token}`);
   // Delete the token file
   deleteTokenFile();
+  deleteIdFile();
+  deleteTempDir();
 };
 
 export default globalTeardown;
