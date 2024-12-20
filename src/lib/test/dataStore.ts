@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { IdData } from 'types/types';
 
 const tempDir = path.join(__dirname, 'temp');
 const idFilePath = path.join(tempDir, 'id.json');
@@ -7,10 +8,6 @@ const tokenFilePath = path.join(tempDir, 'token.json');
 
 if (!fs.existsSync(tempDir)) {
   fs.mkdirSync(tempDir);
-}
-
-interface IdData {
-  [key: string]: number;
 }
 
 export const setId = (name: string, newId: number) => {
