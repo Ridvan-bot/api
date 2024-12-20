@@ -9,6 +9,8 @@ import profileRoutes from './profileRoutes';
 import profilesRoutes from './profilesRoutes';
 import groupsRoutes from './groupsRoutes';
 import groupRoutes from './groupRoutes';
+import userGroupsRoutes from './userGroupsRoutes';
+import userGroupRoutes from './userGroupRoutes';
 
 
 
@@ -30,7 +32,8 @@ router.use('/profile', profileRoutes);
 router.use('/groups', groupsRoutes);
 router.use('/group', groupRoutes);
 
-
+router.use('/usergroups', userGroupsRoutes);
+router.use('/usergroup', userGroupRoutes);
 
 
 
