@@ -11,7 +11,9 @@
 - [wait] A created user should only be able to manage it's own users and scope.
 - [x] setup route for profile
 - [x] setup route for group
-- [w] setup test for route group
+- [x] setup test for route group
+- [x] setup route for usergroup
+- [w] setup test for route usergroup
 - [ ] Updated all imports to use @ 
 
 
