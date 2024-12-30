@@ -59,9 +59,31 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
       default:
         return res.status(500).json({ message: 'Database error' });
     }
-  }
+} else if (err instanceof Prisma.PrismaClientValidationError) {
+  // Manage PrismaClientValidationError
+  const message = extractRelevantMessage(err.message);
+  return res.status(400).json({ message: 'Validation error', details: message });
+}
   else {
     console.error(err);
   res.status(500).json({ message: 'Internal server error' });
   }
+};
+
+const extractRelevantMessage = (fullMessage: string): string => {
+  const match = fullMessage.match(/Argument `[^`]+` is missing/);
+  if (match) {
+    return match[0];
+  }
+
+  const whereMatch = fullMessage.match(/Argument `[^`]+` of type [^`]+ needs at least one of /);
+  if (whereMatch) {
+    return ('Multiple required arguments are missing');
+  }
+
+  const unknownMatch = fullMessage.match(/Unknown argument `[^`]+`/);
+  if (unknownMatch) {
+    return unknownMatch[0];
+  }
+  return fullMessage;
 };

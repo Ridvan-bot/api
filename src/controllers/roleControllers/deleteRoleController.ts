@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 export const deleteRole = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { name } = req.body;
-      const deletrole = await prisma.role.delete(
+      const deleterole = await prisma.role.delete(
         {
           where: {
             name: name,
@@ -15,7 +15,7 @@ export const deleteRole = async (req: Request, res: Response, next: NextFunction
       );
         res.json({
             message: 'Role deleted',
-            role: deletrole
+            role: deleterole
         });
     } catch (error) {
       next(error)

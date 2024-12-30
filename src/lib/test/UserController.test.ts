@@ -1,7 +1,7 @@
 import request from 'supertest';
 import express from 'express';
 import router from '../../routes/index';
-import { getToken } from './tokenManager';
+import { getToken } from './dataStore';
 
 // Create an instance of the Express app
 const app = express();

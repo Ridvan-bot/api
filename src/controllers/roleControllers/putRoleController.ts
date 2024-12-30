@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const putRole = async (req: Request, res: Response, next: NextFunction) => {
+export const updateRole = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const name = req.params.role;
     const newName = req.body.name;
