@@ -1,3 +1,10 @@
+## [1.2.0](https://github.com/Ridvan-bot/api/compare/v1.1.0...v1.2.0) (2024-12-30)
+
+### Bug Fixes
+
+* correct variable name from 'roles' to 'profiles' in getProfiles function ([424420a](https://github.com/Ridvan-bot/api/commit/424420accfb12d8daa547947b24d3fc256644c19))
+* fix typo in profile logic ([b131f53](https://github.com/Ridvan-bot/api/commit/b131f5307d49985eb1b0aba6806b5abb58a472c6))
+
 ## [1.1.0](https://github.com/Ridvan-bot/api/compare/v1.0.0...v1.1.0) (2024-12-17)
 
 ## 1.0.0 (2024-12-17)
