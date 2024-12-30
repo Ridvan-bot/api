@@ -14,8 +14,6 @@ export const updateUserGroup = async (req: Request, res: Response, next: NextFun
     const userid = parseInt(userIdReq, 10);
     const groupid = parseInt(groupIdReq, 10);
 
-    console.log(userid, groupid, userGroupId);
-
     const updateduserGroup = await prisma.userGroup.update({
       where: { id: userGroupId },
       data: {

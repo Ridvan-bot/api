@@ -26,6 +26,10 @@ export const getId = (idInput: string) => {
       const { groupId } = JSON.parse(data);
       return groupId;
     }
+    if (idInput === 'userGroupId') {
+      const { userGroupId } = JSON.parse(data);
+      return userGroupId;
+    }
     else {
     const { id } = JSON.parse(data);
     return id;

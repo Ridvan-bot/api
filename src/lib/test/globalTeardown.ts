@@ -37,6 +37,12 @@ const globalTeardown = async () => {
     await request(app)
     .delete('/api/v1/group/')
     .send({ id: groupId })
+    .set('Authorization', `Bearer ${token}`);
+
+    const userGroupId = getId('userGroupId');
+    await request(app)
+    .delete('/api/v1/usergroup/')
+    .send({ id: userGroupId })
     .set('Authorization', `Bearer ${token}`);    
     // Delete the token file
     deleteTokenFile();
