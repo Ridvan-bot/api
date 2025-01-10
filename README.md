@@ -1,5 +1,11 @@
 # API
 
+![Build Status](https://github.com/Ridvan-bot/pohlmanprotean.se/actions/workflows/deploy.yml/badge.svg)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/Ridvan-bot/api?label=version&sort=semver)
+![Last Commit](https://img.shields.io/github/last-commit/Ridvan-bot/api)
+![GitHub issues](https://img.shields.io/github/issues/Ridvan-bot/api)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/Ridvan-bot/api)
+
 ## Overview
 
 This project is an API built with Node.js, Express, and Prisma. It provides endpoints for user authentication, user management, and profile management. The API supports operations such as user registration, login, profile updates, and more. It is designed to be use PostgreSQL as the database.
@@ -112,5 +118,6 @@ Global setup and teardown: Ensures that a test user is created before tests run 
 By following these steps, you can ensure that your API is working correctly and that all endpoints are functioning as expected.
 
 ##
-Crafted with care by **Robin Pohlman** at **Pohlman Protean AB**.
-
+<p align="center">
+  Crafted with care by <strong>Robin Pohlman</strong> at <strong>Pohlman Protean AB</strong>.
+</p>
