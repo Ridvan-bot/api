@@ -1,4 +1,4 @@
-version: '3.8'  # You can omit this line if you don't want versioning
+version: '3.8' 
 
 services:
   postgres:
@@ -15,13 +15,12 @@ services:
       - api-network  # Custom network for communication
 
   api:
-    build: .  # Assuming you have a Dockerfile in the current directory for the API service
+    build: .  
     ports:
       - "${PORT:-3000}:3000"  # Map the container's port to the host port using an environment variable
     command: sh -c "npx prisma migrate dev --name init && npm run start"
     environment:
       - JWT_SECRET=${JWT_SECRET}
-      - DATABASE_URL=postgresql://postgreuser:bEbovaCb90@postgres:5432/postgredb  # Database connection string
       - PORT=${PORT:-3000}  # Set the PORT environment variable in the container
     depends_on:
       - postgres  # Ensures the postgres service starts before the API service
